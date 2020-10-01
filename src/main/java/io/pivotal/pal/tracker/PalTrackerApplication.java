@@ -4,6 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import javax.sql.DataSource;
+import javax.xml.crypto.Data;
+
 @SpringBootApplication
 public class PalTrackerApplication {
 
@@ -12,7 +15,7 @@ public class PalTrackerApplication {
     }
 
     @Bean
-    public TimeEntryRepository timeEntryRepositry(){
-        return new InMemoryTimeEntryRepository();
+    TimeEntryRepository timeEntryRepository(DataSource dataSource){
+        return new JdbcTimeEntryRepository(dataSource);
     }
 }
